@@ -50,20 +50,7 @@ $popperPadding: 25px;
         padding: ($popperPadding*0.75) $popperPadding ($popperPadding*0.75) $popperPadding;
       }
     }
-    .tg-dialog-close-btn{
-      width: 12px;
-      height: 12px;
-      margin-left: 10px;
-      opacity: .4;
-      cursor: pointer;
-      white-space: nowrap;
-      &:hover{
-        opacity: 8;
-      }
-      &:focus{
-        opacity: 1;
-      }
-    }
+    
     .tg-dialog-spinner{
       display: none;
       opacity: .4;
