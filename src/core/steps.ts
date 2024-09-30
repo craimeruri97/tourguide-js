@@ -5,7 +5,7 @@ import {TourGuideStep} from "../types/TourGuideStep";
  * @param tgInstance
  */
 async function computeTourSteps(tgInstance : TourGuideClient){
-    return new Promise(async (resolve, reject) => {
+    return new Promise((resolve, reject) => {
         let computedSteps : TourGuideStep[] = []
 
         /**

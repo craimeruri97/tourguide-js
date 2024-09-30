@@ -64,9 +64,9 @@ const keyPressHandler = async function (this : TourGuideClient, event: KeyboardE
 function handleInitListeners(this : TourGuideClient) {
 
     /** Next btn **/
-    const initNextBtnListener = ()=>{
+    const initNextBtnListener = () => {
         let nextBtn = document.getElementById("tg-dialog-next-btn");
-        if (!nextBtn || this._trackedEvents['nextBtnClickEvent'].initialized) return
+        if (!nextBtn || this._trackedEvents['nextBtnClickEvent'].initialized) return;
         nextBtn.addEventListener("click", this._trackedEvents.nextBtnClickEvent.fn)
         this._trackedEvents['nextBtnClickEvent'].initialized = true
     }
@@ -79,30 +79,15 @@ function handleInitListeners(this : TourGuideClient) {
         this._trackedEvents['prevBtnClickEvent'].initialized = true
     }
 
-    /** Close btn **/
-    const initCloseBtnListener = ()=>{
-        let closeBtn = document.getElementById("tg-dialog-close-btn");
-        if (!closeBtn || this._trackedEvents['closeBtnClickEvent'].initialized) return
-        closeBtn.addEventListener("click", this._trackedEvents.closeBtnClickEvent.fn, false)
-        this._trackedEvents['closeBtnClickEvent'].initialized = true
+    /** Skip Tutorial btn **/
+    const initSkipBtnListener = () => {
+        let skipBtn = document.getElementById("tg-skip-btn");
+        if (!skipBtn || this._trackedEvents['skipBtnClickEvent'].initialized) return;
+        skipBtn.addEventListener("click", async () => {
+            await this.exit();  // Exit the tutorial
+        });
+        this._trackedEvents['skipBtnClickEvent'].initialized = true;
     }
-
-    /** Click outside **/
-    const initClickOutsideListener = ()=>{
-        if (this._trackedEvents['outsideClickEvent'].initialized) return
-        // setTimeout(() => {
-            document.body.addEventListener('click', this._trackedEvents.outsideClickEvent.fn, false)
-        this._trackedEvents['outsideClickEvent'].initialized = true
-        // }, 300)
-    }
-
-    /** Key press **/
-    const initKeysListener = ()=>{
-        if (this._trackedEvents['keyPressEvent'].initialized) return
-        window.addEventListener("keydown", this._trackedEvents.keyPressEvent.fn, false);
-        this._trackedEvents['keyPressEvent'].initialized = true
-    }
-
 
     /**
      * Primary method
@@ -116,15 +101,8 @@ function handleInitListeners(this : TourGuideClient) {
         if (this.options.showButtons) initNextBtnListener()
         // Prev btn
         if (this.options.showButtons) initPrevBtnListener()
-        // Close btn
-        if (this.options.closeButton) initCloseBtnListener()
-        // Dialog click outside
-        if (this.options.exitOnClickOutside) initClickOutsideListener()
-
-        /**
-         * Setup listeners for keyboard controls
-         */
-        if (this.options.keyboardControls || this.options.exitOnEscape) initKeysListener()
+        // Skip btn
+        if (this.options.showButtons) initSkipBtnListener()
 
         return resolve(true)
     })

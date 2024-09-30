@@ -1,7 +1,8 @@
 $popperPadding: 25px;
+$primary-red: #ff4d4d;
+$progress-bar-bg: #ff4d4d;
 
-
-[data-tg-tour]{
+[data-tg-tour] {
   scroll-margin: 30px 0; // Over-written by JS -  use the autoScrollOffset option
 }
 
@@ -12,188 +13,127 @@ $popperPadding: 25px;
   display: none;
   z-index: 99;
   border-radius: 7px;
-  box-shadow: rgba(33, 33, 33, 0.8) 0 0 1px 2px, rgba(33, 33, 33, .8) 0 0 0 1000vh; // Over-written by JS -  use the backdropColor option
+  box-shadow: rgba(33, 33, 33, 0.1) 0 0 1px 2px, rgba(33, 33, 33, 0.1) 0 0 0 1000vh; // Over-written by JS
   border: 1px solid rgba(193, 192, 232, 0.5); // helps for dark mode contrast
-  top:50vh;
-  left:50vw;
-  width:0;
-  height:0;
-  &.tg-backdrop-animate{
-    transition: all 300ms;
-  }
 }
-.tg-dialog{
+
+.tg-dialog {
   border-radius: 12px;
-  animation-delay: 100ms;
-  //min-width: 280px;
-  min-height: 120px;
+  min-height: 243px;
   background: #fff;
   color: #252525;
-  max-width: 340px; // // Over-written by JS -  use the dialogWidth option
-  width: max-content;
+  max-width: 430px;
+  width: 100%;
   z-index: 9999;
   display: none;
   position: absolute;
   top: 0;
   left: 0;
   padding: 0;
-  font-size: .9rem;
-  .tg-dialog-header{
-    display: flex;
-    align-items: center;
-    padding: $popperPadding $popperPadding 0 $popperPadding;
-    .tg-dialog-title{
-      font-size: 1rem;
-      font-weight: 700;
-      margin-right: auto;
-      & + .tg-dialog-body{
-        padding: ($popperPadding*0.75) $popperPadding ($popperPadding*0.75) $popperPadding;
-      }
-    }
-    .tg-dialog-close-btn{
-      width: 12px;
-      height: 12px;
-      margin-left: 10px;
-      opacity: .4;
-      cursor: pointer;
-      white-space: nowrap;
-      &:hover{
-        opacity: 8;
-      }
-      &:focus{
-        opacity: 1;
-      }
-    }
-    .tg-dialog-spinner{
-      display: none;
-      opacity: .4;
-      margin-top: -1px;
-      -webkit-animation: tg-spin 1s linear infinite;
-      -moz-animation: tg-spin 1s linear infinite;
-      -o-animation: tg-spin 1s linear infinite;
-      animation: tg-spin 1s linear infinite;
-      @keyframes tg-spin {
-        0% {
-            transform: rotate(0deg);
-        }
-        100% {
-            transform: rotate(359deg);
-        }
-      }
-    }
-  }
-  .tg-dialog-progress-bar{
-    background: #f1f1f1;
-    height: 5px;
-    display: block;
-    margin-top: ($popperPadding*0.75);
-    position: relative;
-    > .tg-bar{
-      position: absolute;
-      top: 0;
-      left: 0;
-      min-width: 4px;
-      background: #414144;
-      height: 100%;
-      display: block;
-      transition: all 300ms;
-    }
-  }
-  .tg-dialog-body{
-    padding: $popperPadding;
-    font-weight: 400;
-  }
-  .tg-dialog-dots{
+  font-size: 0.9rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+
+  .tg-dialog-header {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 15px 0;
-    margin-bottom: 10px;
-    border-top: 1px solid #dedee7;
-    border-bottom: 1px solid #dedee7;
-    > span.tg-dot{
-      display: inline-block;
-      width: 9px;
-      height: 9px;
-      background: #c2c7ce;
-      border-radius: 12px;
-      margin: 0 4px;
-      &.tg-dot-active{
-        background: #5362d9;
-      }
+    padding: $popperPadding $popperPadding 0 $popperPadding;
+
+    .tg-dialog-title {
+      font-size: 16px;
+      font-weight: 700;
     }
   }
-  .tg-dialog-footer{
-    padding: $popperPadding*0.5 $popperPadding $popperPadding $popperPadding;
+
+  .tg-dialog-body {
+    padding: $popperPadding;
+    font-weight: 400;
+    text-align: center;
+    width: 363px;
+    height: 38px;
+    margin-inline: auto;
+  }
+
+  .tg-dialog-footer {
+    padding: 43px $popperPadding $popperPadding $popperPadding;
     display: flex;
     align-items: center;
-    button.tg-dialog-btn {
-      padding: 5px 10px;
-      border: 1px solid #cbcfd5;
-      color: #6f727e;
-      border-radius: 4px;
-      font-weight: 500;
-      font-size: .82rem;
-      white-space: nowrap;
-      & + button {
-        margin-left: auto;
-      }
+    justify-content: space-between;
 
-      &.disabled {
-        pointer-events: none;
-        opacity: .6;
-      }
-
-      &:hover {
-        color: #464852;
-        border: 1px solid #b5b7c2;
-        outline: none;
-        box-shadow: none;
-      }
+    .tg-skip-btn {
+      background-color: white;
+      border: 1px solid;
+      color: #6a6a6a;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      height: 40px;
 
       &:focus {
         outline: none;
         box-shadow: none;
       }
-
-      &:active {
-        color: #4655cb;
-        background: #f1f2ff;
-        border: 1px solid #5362d9;
-        outline: none;
-        box-shadow: none;
-      }
     }
-    .tg-dialog-footer-sup {
-      margin: 0 auto;
-      padding: 0 10px;
-      text-align: center;
-      line-height: 1;
-      .tg-step-progress{
-        font-size: .78rem;
-        font-weight: 700;
-        margin: 0 auto;
-        opacity: .4;
-        letter-spacing: 1px;
-        display: inline-block;
+
+    .tg-dialog-btn {
+      background-color: white;
+      border: 1px solid black;
+      color: #fff;
+      width: 53px;
+      padding: 10px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+
+      svg {
+        fill: black;
+        width: 24px;
+        height: 24px;
       }
-      .tg-dialog-dots {
-        padding: 0;
-        margin: 0;
-        border: none;
-        > span.tg-dot{
-          width: 8px;
-          height: 8px;
-          margin: 0 3px;
-        }
-        & + .tg-step-progress{
-          margin-top: 10px;
-          font-size: .68rem;
-        }
+
+      &:hover {
+        background-color: adjust-color($primary-red, $lightness: -10%) !important;
+      }
+
+      &.disabled, &:disabled {
+        opacity: 0.5 !important;
+        cursor: not-allowed;
+        pointer-events: none;
+      }
+
+      &:disabled:hover, &.disabled:hover {
+        background-color: none; // Ensure no hover effect on disabled buttons
       }
     }
   }
-  .tg-arrow{
+
+  .tg-dialog-progress-bar {
+    background: #f1f1f1;
+    height: 10px;
+    display: block;
+    position: relative;
+    bottom: 0;
+    width: 329px;
+    border-radius: 10px;
+    margin: 0 auto; // Centers the progress bar horizontally
+
+    .tg-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: $progress-bar-bg !important;
+      height: 100%;
+      display: block;
+      transition: all 300ms;
+      width: 0%;
+      border-radius: 10px;
+    }
+  }
+
+  .tg-arrow {
     position: absolute;
     background: #fff;
     width: 9px;
@@ -201,33 +141,62 @@ $popperPadding: 25px;
     border-radius: 1px;
     transform: rotate(45deg);
   }
-  &.tg-dialog-fixed{
-    transition: none;
-    animation-delay: 0ms;
-  }
-  &.animate-position{
-    transition: all 300ms;
+}
+
+.tg-backdrop-animate {
+  transition: all 300ms;
+}
+
+.tg-dialog-fixed {
+  transition: none;
+  animation-delay: 0ms;
+}
+
+.animate-position {
+  transition: all 300ms;
+}
+
+.tg-dialog-loading {
+  .tg-dialog-header {
+    .tg-dialog-title {
+      opacity: 0.4;
+    }
+    .tg-dialog-close-btn {
+      display: none;
+    }
+    .tg-dialog-spinner {
+      display: inline-block;
+    }
   }
 
-  &.tg-dialog-loading{
-    .tg-dialog-header{
-      .tg-dialog-title{
-        opacity: .4;
-      }
-      .tg-dialog-close-btn{
-        display: none;
-      }
-      .tg-dialog-spinner{
-        display: inline-block;
-      }
-    }
-    .tg-dialog-body{
-      opacity: .4;
-      pointer-events: none;
-    }
-    .tg-dialog-footer{
-      pointer-events: none;
-      opacity: .4;
-    }
+  .tg-dialog-body {
+    opacity: 0.4;
+    pointer-events: none;
   }
+
+  .tg-dialog-footer {
+    pointer-events: none;
+    opacity: 0.4;
+  }
+}
+
+.tg-step-progress {
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin: 0 auto;
+  opacity: 0.4;
+  letter-spacing: 1px;
+  display: inline-block;
+}
+
+.tg-dialog-footer-right {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.tg-dialog-footer-left {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

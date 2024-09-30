@@ -18,8 +18,10 @@ function computeBackdropAttributes(this : TourGuideClient){
     if(!this.options) return
     // Base class
     this.backdrop.className = 'tg-backdrop' // Reset
+
+    const shadowOpacity = 0.2;
     // Backdrop colour
-    this.backdrop.style.boxShadow = this.options.backdropColor + ' 0 0 1px 2px, ' + this.options.backdropColor + ' 0 0 0 1000vh';
+    this.backdrop.style.boxShadow = `rgba(33, 33, 33, ${shadowOpacity}) 0 0 1px 2px, rgba(33, 33, 33, ${shadowOpacity}) 0 0 0 1000vh`;
     // Custom dialog class
     if(this.options.backdropClass) this.backdrop.classList.add(this.options.backdropClass)
     // Animation class
