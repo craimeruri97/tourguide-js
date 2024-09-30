@@ -37,75 +37,31 @@ $progress-bar-bg: #ff4d4d;
     display: flex;
     align-items: center;
     justify-content: center;
+    justify-content: center;
     padding: $popperPadding $popperPadding 0 $popperPadding;
-
-    .tg-dialog-title {
-      font-size: 16px;
+    .tg-dialog-title{
+      font-size: 22px;
       font-weight: 700;
-    }
-  }
-
-  .tg-dialog-body {
-    padding: $popperPadding;
-    font-weight: 400;
-    text-align: center;
-    width: 363px;
-    height: 38px;
-    margin-inline: auto;
-  }
-
-  .tg-dialog-footer {
-    padding: 43px $popperPadding $popperPadding $popperPadding;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    .tg-skip-btn {
-      background-color: white;
-      border: 1px solid;
-      color: #6a6a6a;
-      padding: 10px 20px;
-      border-radius: 10px;
-      font-size: 0.82rem;
-      cursor: pointer;
-      height: 40px;
-
-      &:focus {
-        outline: none;
-        box-shadow: none;
+      & + .tg-dialog-body{
+        padding: ($popperPadding*0.75) $popperPadding ($popperPadding*0.75) $popperPadding;
       }
     }
-
-    .tg-dialog-btn {
-      background-color: white;
-      border: 1px solid black;
-      color: #fff;
-      width: 53px;
-      padding: 10px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-
-      svg {
-        fill: black;
-        width: 24px;
-        height: 24px;
-      }
-
-      &:hover {
-        background-color: adjust-color($primary-red, $lightness: -10%) !important;
-      }
-
-      &.disabled, &:disabled {
-        opacity: 0.5 !important;
-        cursor: not-allowed;
-        pointer-events: none;
-      }
-
-      &:disabled:hover, &.disabled:hover {
-        background-color: none; // Ensure no hover effect on disabled buttons
+    
+    .tg-dialog-spinner{
+      display: none;
+      opacity: .4;
+      margin-top: -1px;
+      -webkit-animation: tg-spin 1s linear infinite;
+      -moz-animation: tg-spin 1s linear infinite;
+      -o-animation: tg-spin 1s linear infinite;
+      animation: tg-spin 1s linear infinite;
+      @keyframes tg-spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(359deg);
+        }
       }
     }
   }
@@ -200,3 +156,4 @@ $progress-bar-bg: #ff4d4d;
   align-items: center;
   justify-content: space-between;
 }
+
