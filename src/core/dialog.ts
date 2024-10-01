@@ -138,20 +138,20 @@ function updateDialogHtml(tgInstance: TourGuideClient) {
       if (tgInstance.activeStep === tgInstance.tourSteps.length - 1) {
         tgFooter.innerHTML = `
           <div class="tg-dialog-footer-left">
-            <button type="button" class="tg-restart-btn">Restart Tutorial</button>
+            <button type="button" class="tg-dialog-btn" id="tg-restart-btn" style="width: 126px; height: 40px;">Restart Tutorial</button>
           </div>
           <div class="tg-dialog-footer-right">
-            <button type="button" class="tg-finish-btn">Finish Tutorial</button>
+            <button type="button" class="tg-dialog-btn" id="tg-finish-btn" style="width: 126px; height: 40px;">Finish Tutorial</button>
           </div>
         `;
 
         // Attach event listeners for "Restart Tutorial" and "Finish Tutorial"
-        const restartBtn = tgFooter.querySelector('.tg-restart-btn');
+        const restartBtn = tgFooter.querySelector('#tg-restart-btn');
         if (restartBtn) {
           restartBtn.addEventListener('click', () => tgInstance.visitStep(0));
         }
 
-        const finishBtn = tgFooter.querySelector('.tg-finish-btn');
+        const finishBtn = tgFooter.querySelector('#tg-finish-btn');
         if (finishBtn) {
           finishBtn.addEventListener('click', () => tgInstance.exit());
         }

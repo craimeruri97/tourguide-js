@@ -29,7 +29,7 @@ function computeBackdropAttributes(this : TourGuideClient){
 }
 
 function computeBackdropPosition(tgInstance : TourGuideClient){
-    return new Promise(async (resolve, reject) => {
+    return new Promise((resolve, reject) => {
         // TS build strict check
         if(typeof tgInstance.options.targetPadding === "undefined") return reject("Options failed to initialize")
         if(!tgInstance.backdrop) return reject("No backdrop element initialized")
@@ -70,7 +70,20 @@ function computeBackdropPosition(tgInstance : TourGuideClient){
         tgInstance.backdrop.style.height = (targetElemRect.height ? targetElemRect.height + (tgInstance.options.targetPadding) : targetElemRect.height) + "px"
 
         resolve(true)
-    })
+    });
 }
 
-export {createTourGuideBackdrop, computeBackdropAttributes, computeBackdropPosition}
+function disableAllExceptTarget(target: HTMLElement) {
+    document.body.classList.add("disable-pointer-events");
+    target.classList.add("enable-pointer-events");
+}
+
+function cleanupPointerEvents() {
+    document.body.classList.remove("disable-pointer-events");
+    const activeElement = document.querySelector(".enable-pointer-events");
+    if (activeElement) {
+        activeElement.classList.remove("enable-pointer-events");
+    }
+}
+
+export {createTourGuideBackdrop, computeBackdropAttributes, computeBackdropPosition, disableAllExceptTarget, cleanupPointerEvents}
